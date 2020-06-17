@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/sh -l
 
 if [ -f "Pipfile" ]; then
     pipenv run python manage.py check --deploy

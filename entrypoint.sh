@@ -1,16 +1,27 @@
 #!/bin/sh -l
 
+set -e
+
 FAIL=${FAIL_LEVEL:=ERROR}
 MANAGE_PATH=${GITHUB_WORKSPACE}/${APP_PATH}
+REQS=${GITHUB_WORKSPACE}/${DEP_PATH}
 
 echo -e "Path to manage.py set as: " $MANAGE_PATH
+echo -e "Requirements path set as: " $REQS
 
-if [ -f "Pipfile" ]; then
+if [ "$ENV_TYPE" == "pipenv" ]; then
+    cd $REQS
     pip3 install pipenv
-    pipenv install
-    cd $MANAGE_PATH
-    echo -e "Running in $(pwd)"
-    pipenv run python manage.py check --deploy --fail-level ${FAIL}
-else
+    PIPENV_IGNORE_VIRTUALENVS=1 pipenv install
+    cd $MANAGE_PATH && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python3 manage.py check --deploy --fail-level ${FAIL}
+fi
+if [ "$ENV_TYPE" == "venv" ]; then
+    pip install -r $REQS
     cd $MANAGE_PATH && python manage.py check --deploy --fail-level ${FAIL}
 fi
+if [ -z "$ENV_TYPE" ]; then
+    echo "No virtual environment specified."
+    pip install django
+    cd $MANAGE_PATH && python manage.py check --deploy --fail-level ${FAIL}
+fi
+

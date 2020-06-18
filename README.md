@@ -16,6 +16,7 @@ on:
 
 env:
   FAIL_LEVEL: WARNING
+  APP_PATH: ./app
 
 jobs:
   build:

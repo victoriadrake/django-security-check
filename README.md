@@ -6,7 +6,7 @@ If you are thinking of using this action, congratulations. You're well on your w
 
 ## Use this in your workflow
 
-You can use this action in a workflow file to run [Django's `check`](https://docs.djangoproject.com/en/3.0/ref/django-admin/#check) against your production Django application. Here is an example workflow that runs Django Security Check on any `push` event to the `master` branch. See below for `env` instructions.
+You can use this action in a workflow file to continuously run [Django's `check --deploy`](https://docs.djangoproject.com/en/3.0/ref/django-admin/#check) against your production Django application configuration. Here is an example workflow that runs Django Security Check on any `push` event to the `master` branch. See below for `env` instructions.
 
 ```yml
 name: Django Security Check
@@ -61,4 +61,3 @@ For help editing the YAML file, see [Workflow syntax for GitHub Actions](https:/
 Depending on what you've set as a `FAIL_LEVEL`, this action may return results without a failed check. For example, the default `ERROR` level may still return `WARNING` results, although the check is a pass. To fail the check on `WARNING` results, set `FAIL_LEVEL` to `WARNING`, `INFO`, or `DEBUG`.
 
 Here is [an example of output from a check](https://github.com/victoriadrake/react-in-django/runs/786560881?check_suite_focus=true#step:4:49). Helpful instructions for remediation are provided in the output.
-

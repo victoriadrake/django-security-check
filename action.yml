@@ -1,9 +1,12 @@
-name: 'Django Security Check'
-description: 'Helps find and remediate common security vulnerabilities in your Django application.'
-author: 'victoriadrake'
+name: "Django Security Check"
+description: "Helps find and remediate common security vulnerabilities in your Django application."
+author: "victoriadrake"
 branding:
-  icon: 'shield'
-  color: 'green'
+  icon: "shield"
+  color: "green"
+outputs:
+  result:
+    description: "Django Security Check output"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"

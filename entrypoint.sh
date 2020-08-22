@@ -1,4 +1,6 @@
 #!/bin/bash
+# Omits 'set -e' because short-circuiting this script fails the GitHub action unintentionally
+
 
 FAIL=${FAIL_LEVEL:=ERROR}
 MANAGE_PATH=${GITHUB_WORKSPACE}/${APP_PATH}

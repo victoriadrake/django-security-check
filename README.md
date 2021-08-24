@@ -21,6 +21,7 @@ env:
   ENV_TYPE: venv
   DEP_PATH: app/requirements.txt
   APP_PATH: app/
+  EXTRA_ARGS: "--settings=app.settings.production"
 
 jobs:
   build:
@@ -108,6 +109,8 @@ If you are using `venv`, set `ENV_TYPE: venv` as above. Set the `DEP_PATH` varia
 Set the `APP_PATH` to the location of your `manage.py` file. For example, if you have `project-root/application/manage.py`, then set `APP_PATH: application/`. If you have `project-root/manage.py`, you can leave this unset.
 
 If you are not using a virtual environment, shame on you. This action will still try to help you by installing Django. Ensure you set `APP_PATH` to the directory of your `manage.py` file.
+
+You can use `EXTRA_ARGS` to pass any additional desired arguments, such as a settings module.
 
 ### Workflow customization
 

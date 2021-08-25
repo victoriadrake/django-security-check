@@ -17,6 +17,7 @@ on:
       - master
 
 env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
   FAIL_LEVEL: WARNING
   ENV_TYPE: venv
   DEP_PATH: app/requirements.txt
@@ -55,6 +56,7 @@ name: Django Security Check
 on: pull_request_target
 
 env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
   FAIL_LEVEL: WARNING
   ENV_TYPE: pipenv
 
@@ -95,6 +97,8 @@ This produces:
 Helpful instructions for remediation are provided by Django in the output.
 
 ### Setting the `env` variables
+
+There must be a `SECRET_KEY` value available in order for Django to run the checks. Otherwise, an `ImproperlyConfigured` exception is raised. If you don't deploy from your repository, you may use a dummy value. [Set a repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) with the name of `SECRET_KEY` and include this as an environment variable as shown in the examples above.
 
 The `FAIL_LEVEL` environment variable is the minimum severity finding that will cause the check to fail. Choices are `CRITICAL`, `ERROR`, `WARNING`, `INFO`, and `DEBUG`. If not set, it defaults to `ERROR`.
 

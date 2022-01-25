@@ -15,16 +15,21 @@ if [[ "$ENV_TYPE" == "pipenv" ]]; then
     pip3 install pipenv
     PIPENV_IGNORE_VIRTUALENVS=1 pipenv install
     cd $MANAGE_PATH && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python3 manage.py check --deploy --fail-level ${FAIL} ${ARGS} &> output.txt
+    EXIT_CODE=$?
 fi
 if [[ "$ENV_TYPE" == "venv" ]]; then
     pip install -r $REQS
     cd $MANAGE_PATH && python manage.py check --deploy --fail-level ${FAIL} ${ARGS} &> output.txt
+    EXIT_CODE=$?
 fi
 if [[ -z "$ENV_TYPE" ]]; then
     echo "No virtual environment specified."
     pip install django
     cd $MANAGE_PATH && python manage.py check --deploy --fail-level ${FAIL} ${ARGS} &> output.txt
+    EXIT_CODE=$?
 fi
 
 echo -e "\n--------- Django Security Check results ---------"
 cat output.txt
+
+exit $EXIT_CODE

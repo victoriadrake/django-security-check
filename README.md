@@ -46,7 +46,7 @@ jobs:
 
 ## View results
 
-In the example workflow file above, you can view results in the Action workflow run, or download them as an [artifact](https://docs.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts). Here is [an example of output from a check](https://github.com/victoriadrake/react-in-django/runs/1016213333?check_suite_focus=true#step:4:45).
+In the example workflow file above, you can view results in the Action workflow run, or download them as an [artifact](https://docs.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts). Check out the [repositories  that use this action](https://github.com/victoriadrake/django-security-check/network/dependents) for some examples.
 
 You can also add the check output to a comment, for example, if the workflow was triggered by a pull request. To do this, [set an output parameter](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter) and use `actions/github-script`. Here's an example workflow you can copy that runs on pull requests:
 
